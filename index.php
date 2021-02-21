@@ -34,14 +34,46 @@
 						<input type="text" name="email" class="form-control" placeholder="Ingresa tu correo electrónico">
 					</div>
 					<div class="form-group">
-						<input type="submit" name="insertar" class="mt-4 btn btn-warning">
+						<input type="submit" name="insertar" class="mt-4 btn btn-warning" value="Insertar Datos">
 					</div>
 				</form>
 			</div>
+			<?php
+				include("createUser.php");
+			?>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+			<table class="table table-bordered table-responsive">
+				<tr>
+					<td>ID</td>
+					<td>Nombre</td>
+					<td>Teléfono</td>
+					<td>email</td>
+					<td>Amigos</td>
+				</tr>
+				<?php
+					$consulta = "SELECT * FROM usuarios";
+					$execute = mysqli_query($con, $consulta);
+
+					$i = 0;
+					while($row = mysqli_fetch_array($execute)){
+						$id = $row['id'];
+						$nombre = $row['nombre'];
+						$telefono = $row['telefono'];
+						$email= $row['email'];
+						$i++;
+				?>
+				<tr align="center">
+					<td><?php echo $id;?></td>
+					<td><?php echo $nombre;?></td>
+					<td><?php echo $telefono;?></td>
+					<td><?php echo $email;?></td>
+					<td><?php echo "Amigos";?></td>
+				</tr>
+				<?php } ?>
+			</table>
 		</div>
 	</div>
-	<?php
-		include("createUser.php");
-	?>
+
 </body>
 </html>
